@@ -1,15 +1,223 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link rel="icon" sizes="192x192" href="/favicon.ico" />
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="/favicon.ico" type="image/x-icon" />
-    <title>Brick Game 9999 in 1 | 3kh0</title>
-    <script type="application/javascript" src="/js/main.js"></script>
-  </head>
-  <body>
-    <iframe src="https://mingame.ru/public/storage/game/vseigru/brick-game-9999-in-1/" referrerpolicy="no-referrer" title="Flowlab" style="border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%;"></iframe>
-  </body>
-</html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B1PLQTN5LK"></script>
+  <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+   gtag('config', 'G-B1PLQTN5LK');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brick Game 9999 in 1 - Play Online for Free!</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #242424;
+      width: 100%;
+      height: 100%;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
 
-https://mingame.ru/public/storage/game/vseigru/brick-game-9999-in-1/
+    #unity-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      background: #242424;
+    }
+
+    canvas {
+      background: #242424;
+      display: block;
+    }
+
+    #unity-canvas {
+      width: auto;
+      height: 100%;
+    }
+
+    @media screen and (max-width: 767px) and (orientation: portrait) {
+      #unity-canvas {
+        width: 100vw;
+        height: 100%;
+      }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+      #unity-canvas {
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    #loading-spinner {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      border: 8px solid #444;
+      border-top: 8px solid #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    #loading-text {
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #e0e0e0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    @keyframes spin {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    #rotate-alert {
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #242424;
+      color: #ffffff;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #rotate-alert svg {
+      transform: rotate(90deg);
+      fill: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    #rotate-alert .rotate-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    #rotate-alert .rotate-sub {
+      font-size: 1em;
+      margin-top: 8px;
+      color: #cccccc;
+    }
+    
+    @media (prefers-color-scheme: light) {
+  html, body, #unity-container, canvas {
+    background: #dddddd !important;
+  }
+
+  #loading-spinner {
+    border: 8px solid #ccc !important;
+    border-top: 8px solid #2D404F !important;
+  }
+
+  #loading-text {
+    color: #2D404F !important;
+  }
+
+  #rotate-alert {
+    background: #dddddd !important;
+    color: #333333 !important;
+  }
+
+  #rotate-alert svg {
+    fill: #333333 !important;
+  }
+
+  #rotate-alert .rotate-title {
+    color: #333333 !important;
+  }
+
+  #rotate-alert .rotate-sub {
+    color: #555555 !important;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <div id="unity-container">
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+  </div>
+
+  <!-- Spinner и процент -->
+  <div id="loading-spinner"></div>
+  <div id="loading-text">0%</div>
+
+  <!-- Поворот устройства -->
+  <div id="rotate-alert">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512" width="100" height="100">
+      <path d="M192 0H64C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H192c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64zM128 480c-17.7 0-32-14.3-32-32s14.3-32 32-32s32 14.3 32 32s-14.3 32-32 32z"/>
+    </svg>
+    <div class="rotate-title">Rotate your device</div>
+    <div class="rotate-sub">For best viewing, please use portrait mode.</div>
+  </div>
+
+  <script>
+    function isMobile() {
+      return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    function checkOrientation() {
+      const alert = document.getElementById('rotate-alert');
+      if (isMobile()) {
+        const isLandscape = window.innerWidth > window.innerHeight;
+        alert.style.display = isLandscape ? 'flex' : 'none';
+      } else {
+        alert.style.display = 'none';
+      }
+    }
+
+    window.addEventListener("load", checkOrientation);
+    window.addEventListener("resize", checkOrientation);
+    window.addEventListener("orientationchange", checkOrientation);
+  </script>
+
+  <script src="Build/BrickGame.loader.js"></script>
+  <script>
+    const canvas = document.querySelector("#unity-canvas");
+    const spinner = document.getElementById("loading-spinner");
+    const loadingText = document.getElementById("loading-text");
+
+    createUnityInstance(canvas, {
+      dataUrl: "Build/BrickGame.data.gz",
+      frameworkUrl: "Build/BrickGame.framework.js.gz",
+      codeUrl: "Build/BrickGame.wasm.gz",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "Dialekts, LTD",
+      productName: "Brick Game",
+      productVersion: "1.1.0"
+    }, (progress) => {
+      const percent = Math.floor(progress * 100);
+      loadingText.textContent = `${percent}%`;
+      if (progress >= 1.0) {
+        spinner.style.display = "none";
+        loadingText.style.display = "none";
+      }
+    }).catch((error) => {
+      console.error("Unity instance loading failed", error);
+    });
+  </script>
+
+</body>
+</html>
