@@ -721,6 +721,11 @@
     "title": "There Is No Game"
   },
   {
+    "link": "projects/tinyfishing/index.html",
+    "imgSrc": "projects/tinyfishing/tinyfishing.png",
+    "title": "Tiny fishing"
+  },
+  {
     "link": "projects/thisistheonlylevel/index.html",
     "imgSrc": "projects/thisistheonlylevel/thisistheonlylevel.png",
     "title": "This Is The Only Level"
