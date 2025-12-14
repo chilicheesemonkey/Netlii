@@ -726,6 +726,11 @@
     "title": "This Is The Only Level"
   },
   {
+    "link": "projects/tombofthemask/index.html",
+    "imgSrc": "projects/tombofthemask/totm.png",
+    "title": "Tomb of the mask"
+  },
+  {
     "link": "projects/tosstheturtle/index.html",
     "imgSrc": "projects/tosstheturtle/tosstheturtle.png",
     "title": "Toss The Turtle"
