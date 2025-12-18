@@ -250,6 +250,11 @@
     "title": "Doge Miner"
   },
   {
+    "link": "projects/dk/cldonkeykongnes.html",
+    "imgSrc": "projects/dk/images.png",
+    "title": "Donkey kong (NES)"
+  },
+  {
     "link": "projects/doodle-jump/index.html",
     "imgSrc": "projects/doodle-jump/doodle.png",
     "title": "Doodle Jump"
@@ -586,6 +591,11 @@
     "title": "Om Nom Bounce"
   },
   {
+    "link": "projects/pacman/index.html",
+    "imgSrc": "projects/pacman/Pac-Man.webp",
+    "title": "Pac-man (NES)"
+  },
+  {
     "link": "projects/pandemic2/index.html",
     "imgSrc": "projects/pandemic2/pandemic2.png",
     "title": "Pandemic 2"
@@ -774,6 +784,11 @@
     "link": "projects/territorial/index.html",
     "imgSrc": "projects/territorial/territorial.png",
     "title": "Territorial.io"
+  },
+  {
+    "link": "projects/tetris/index.html",
+    "imgSrc": "projects/tetris/Tetris.png",
+    "title": "Tetris (NES)"
   },
   {
     "link": "projects/thebattle/index.html",
