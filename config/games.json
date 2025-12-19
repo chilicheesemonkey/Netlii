@@ -155,6 +155,11 @@
     "title": "Champion Archer"
   },
   {
+    "link": "projects/chatbot/index.html",
+    "imgSrc": "projects/chatbot/IMG_3837.jpg",
+    "title": "AI Chatbot"
+  },
+  {
     "link": "projects/chrome-dino/index.html",
     "imgSrc": "projects/chrome-dino/icons/icon-256.png",
     "title": "Chrome Dino"
