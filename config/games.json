@@ -50,6 +50,11 @@
     "title": "Avalanche"
   },
   {
+    "link": "projects/BR0WS3R/index.html",
+    "imgSrc": "projects/BR0WS3R/logo.png",
+    "title": "BubberBrowser"
+  },
+  {
     "link": "projects/backrooms/index.html",
     "imgSrc": "projects/backrooms/img/splash.jpg",
     "title": "Backrooms"
@@ -690,12 +695,6 @@
     "imgSrc": "projects/sand-game/sand.png",
     "title": "Sand Game"
   },
-  {
-    "link": "projects/BR0WS3R/index.html",
-    "imgSrc": "projects/BR0WS3R/logo.png",
-    "title": "BubberBrowser"
-  },
-  
   {
     "link": "projects/slope/index.html",
     "imgSrc": "projects/slope/slope4.jpeg",
