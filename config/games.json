@@ -686,6 +686,11 @@
     "imgSrc": "projects/push-your-luck/assets/img/push.png",
     "title": "Push Your Luck"
   },
+  {
+    "link": "projects/rubikscube/index.html",
+    "imgSrc": "projects/rubikscube/assets/rubiks.png",
+    "title": "Rubiks Cube online"
+  },
  {
     "link": "projects/rallypoint5/index.html",
     "imgSrc": "projects/rallypoint5/rp5.jpg",
