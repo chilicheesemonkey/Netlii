@@ -340,6 +340,11 @@
     "title": "Endless War 3"
   },
   {
+    "link": "projects/etc/index.html",
+    "imgSrc": "projects/etc/escapingtheprison.webp",
+    "title": "Escaping the prison"
+  },
+  {
     "link": "projects/evil-glitch/index.html",
     "imgSrc": "projects/evil-glitch/evil.png",
     "title": "Evil Glitch"
