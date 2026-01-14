@@ -5,7 +5,7 @@
     <title>Redirecting...</title>
     <style>
         body { font-family: sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; background: #f0f0f0; }
-        .loader { border: 4px solid #ccc; border-top: 4px solid #2ecc71; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        .loader { border: 4px solid #ccc; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
@@ -17,46 +17,50 @@
     <div id="ad-bait" class="ad-container adsbox pub_300x250" style="position: absolute; left: -9999px;">&nbsp;</div>
 
     <script>
-        const MY_GAMES_SITE = "/home.html";
+        const MY_GAMES_SITE = "https://your-unblocked-games-site.com";
         const SAFE_SITE = "https://www.britannica.com";
 
         async function checkEnvironment() {
-            // 1. Detect ChromeOS (Managed Hardware)
-            const isChromebook = /\bCrOS\b/.test(navigator.userAgent);
+            let isManaged = false;
 
-            // 2. Detect Blockers (Bait Method)
-            let isBlockerActive = false;
+            // 1. Hardware Detection (ChromeOS)
+            if (/\bCrOS\b/.test(navigator.userAgent)) isManaged = true;
+
+            // 2. Behavioral Detection (Ad-blockers/Filters)
             const bait = document.getElementById('ad-bait');
-            
-            // Check if bait was hidden or removed by an extension
             if (!bait || bait.offsetParent === null || bait.offsetHeight === 0) {
-                isBlockerActive = true;
+                isManaged = true;
             }
 
-            // 3. Detect Specific School Filters (Resource Probing)
-            // Example IDs: GoGuardian (haldp...); Securly (jofoa...)
-            const schoolExtensions = [
-                'chrome-extension://haldlgldplgnggkjaafhelgiaglafanh/manifest.json', // GoGuardian
-                'chrome-extension://jofoeobidjoneinaonbebmbiibngebpa/manifest.json'  // Securly
+            // 3. Extension ID Probing
+            // Added Linewize (Qoria) and other common school filters
+            const filterExtensions = [
+                'ifinpabiejbjobcphhaomiifjibpkjlf', // Linewize Connect / Qoria
+                'haldlgldplgnggkjaafhelgiaglafanh', // GoGuardian
+                'ckecmkbnoanpgplccmnoikfmpcdladkc', // Securly (Chromebook)
+                'kfiocjonplkilcjfgabfngiddebalkod'  // Securly (Windows/Mac)
             ];
 
-            for (let url of schoolExtensions) {
+            for (let id of filterExtensions) {
                 try {
-                    let res = await fetch(url);
-                    if (res.ok) isBlockerActive = true;
-                } catch (e) { /* Extension not found or blocked access */ }
+                    // We try to fetch the manifest file of the extension
+                    let res = await fetch(`chrome-extension://${id}/manifest.json`);
+                    if (res.ok) {
+                        isManaged = true;
+                        break;
+                    }
+                } catch (e) { /* Extension not accessible or not present */ }
             }
 
-            // FINAL LOGIC
-            // Redirect to games if it's a Chromebook OR if a blocker is detected
-            if (isChromebook || isBlockerActive) {
+            // Final Redirect
+            if (isManaged) {
                 window.location.href = MY_GAMES_SITE;
             } else {
                 window.location.href = SAFE_SITE;
             }
         }
 
-        // Run after a short delay to give extensions time to act on the "bait"
+        // Delay execution slightly to allow extensions to load/interact with page
         setTimeout(checkEnvironment, 1000);
     </script>
 </body>
