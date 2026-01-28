@@ -133,7 +133,7 @@ const tabItem = (tab) => {
             if (tabs.length) focusTab(tabs[tabs.length - 1]);
             else
               setTimeout(() => {
-                addTab("bubber.pages.dev/movies");
+                addTab("bubber.pages.dev/movies/");
               }, 100);
           }
 
@@ -248,7 +248,7 @@ async function addTab(link) {
   focusTab(tab);
 }
 
-addTab("bubber.pages.dev/movies");
+addTab("bubber.pages.dev/movies/");
 
 const urlParams = new URLSearchParams(window.location.search);
 
