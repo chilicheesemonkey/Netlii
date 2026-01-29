@@ -248,7 +248,7 @@ async function addTab(link) {
   focusTab(tab);
 }
 
-addTab("");
+addTab("duckduckgo.com");
 
 const urlParams = new URLSearchParams(window.location.search);
 
